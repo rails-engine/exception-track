@@ -14,7 +14,7 @@ module ExceptionTrack
     def config
       return @config if defined?(@config)
       @config = Configuration.new
-      @config.environments = %i(development test production)
+      @config.environments = %i(development production)
       @config
     end
 

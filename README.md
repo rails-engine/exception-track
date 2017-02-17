@@ -23,6 +23,18 @@ And then execute:
 $ bundle
 ```
 
+## Configuration
+
+Add config/initializers/exception-track.rb
+
+```rb
+ExceptionTrack.configure do
+  # environments for store Exception log in to database.
+  # default: [:development, :production]
+  # self.environments = %i(production)
+end
+```
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

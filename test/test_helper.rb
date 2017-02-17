@@ -10,6 +10,9 @@ require "rails/test_help"
 # to be shown.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
+ExceptionTrack.configure do
+  self.environments = %i(test production)
+end
 
 # Load fixtures from the engine
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
