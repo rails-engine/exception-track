@@ -23,6 +23,18 @@ And then execute:
 $ bundle
 ```
 
+And mount routers:
+
+config/router.rb
+
+```rb
+Rails.application.routes.draw do
+  mount ExceptionTrack::Engine => "/exception-track"
+end
+```
+
+Now you can open: http://localhost:3000/exception-track
+
 ## Configuration
 
 Add config/initializers/exception-track.rb
@@ -34,6 +46,12 @@ ExceptionTrack.configure do
   # self.environments = %i(production)
 end
 ```
+
+## exception_notification Configuration
+
+You can config [exception_notification](https://github.com/smartinez87/exception_notification/) by itself's way, more documentations please visit:
+
+https://github.com/smartinez87/exception_notification/
 
 ## License
 
