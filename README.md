@@ -5,6 +5,7 @@ Tracking exceptions for Rails application store them in database.
 
 This gem is base on [exception_notification](https://github.com/smartinez87/exception_notification/).
 
+[![Gem Version](https://badge.fury.io/rb/exception-track.svg)](https://badge.fury.io/rb/exception-track) [![Build Status](https://travis-ci.org/rails-engine/exception-track.svg)](https://travis-ci.org/rails-engine/exception-track) [![Code Climate](https://codeclimate.com/github/rails-engine/exception-track/badges/gpa.svg)](https://codeclimate.com/github/rails-engine/exception-track) [![codecov.io](https://codecov.io/github/rails-engine/exception-track/coverage.svg?branch=master)](https://codecov.io/github/rails-engine/exception-track?branch=master) [![](http://inch-ci.org/github/rails-engine/exception-track.svg?branch=master)](http://inch-ci.org/github/rails-engine/exception-track?branch=master)
 
 ## Installation
 
