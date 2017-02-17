@@ -87,7 +87,7 @@ authenticate :user, ->(u) { u.admin? } do
 end
 ```
 
-https://github.com/plataformatec/devise/wiki/How-To:-Define-resource-actions-that-require-authentication-using-routes.rb
+More examples: [Sidekiq Web Document](https://github.com/mperham/sidekiq/wiki/Monitoring#authentication)
 
 ## License
 
