@@ -23,6 +23,12 @@ And then execute:
 $ bundle
 ```
 
+Generate migration and config files
+
+```bash
+$ rails g exception_track:install
+```
+
 And mount routers:
 
 config/router.rb
