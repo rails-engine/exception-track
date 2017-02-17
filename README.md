@@ -61,11 +61,27 @@ You can config [exception_notification](https://github.com/smartinez87/exception
 
 https://github.com/smartinez87/exception_notification/
 
-## Router admin authenticate for Devise
-
-config/router.rb
+## Router admin authenticate
 
 ```rb
+# lib/admin_constraint.rb
+class AdminConstraint
+  def matches?(request)
+    return false if !request.session[:user_id]
+    user = User.find(request.session[:user_id])
+    user && user.admin?
+  end
+end
+
+# config/router.rb
+require 'admin_constraint'
+mount ExceptionTrack::Engine => "/exception-track", constraints: AdminConstraint.new
+```
+
+**With Devise**
+
+```rb
+# config/router.rb
 authenticate :user, ->(u) { u.admin? } do
   mount ExceptionTrack::Engine => "/exception-track"
 end
