@@ -53,6 +53,18 @@ You can config [exception_notification](https://github.com/smartinez87/exception
 
 https://github.com/smartinez87/exception_notification/
 
+## Router admin authenticate for Devise
+
+config/router.rb
+
+```rb
+authenticate :user, ->(u) { u.admin? } do
+  mount ExceptionTrack::Engine => "/exception-track"
+end
+```
+
+https://github.com/plataformatec/devise/wiki/How-To:-Define-resource-actions-that-require-authentication-using-routes.rb
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
