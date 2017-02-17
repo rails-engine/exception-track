@@ -1,6 +1,6 @@
 <script type="text/javascript">
   function confirmDestroyAll() {
-    if (!confirm('This will destroy all Exception logs, are you sure?')) {
+    if (!confirm('Are you sure want destroy all Exception logs?')) {
       return false;
     }
   }
@@ -16,7 +16,7 @@
 </div>
 
 <% if @logs.blank? %>
-  <div class="no-record">Good! This have no Exception logs.</div>
+  <div class="no-record">No exceptions.</div>
 <% else %>
   <%= will_paginate @logs %>
 
