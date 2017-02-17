@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    exception-track (0.1.0)
+    exception-track (0.1.1)
       exception_notification (~> 4.1)
       rails (>= 4.2.0, < 5.1)
       will_paginate (~> 3)
