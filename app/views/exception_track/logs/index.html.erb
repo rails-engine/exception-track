@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  function confirmDestroyAll() {
+    if (!confirm('This will destroy all Exception logs, are you sure?')) {
+      return false;
+    }
+  }
+</script>
+<div class="toolbar">
+  <%= @logs.total_entries %> exceptions
+
+  <div class="pull-right">
+    <%= form_tag(all_logs_path, method: 'delete') do %>
+      <button type="submit" class="btn btn-danger" onclick="return confirmDestroyAll()">Delete All</button>
+    <% end %>
+  </div>
+</div>
+
+<% if @logs.blank? %>
+  <div class="no-record">Good! This have no Exception logs.</div>
+<% else %>
+  <%= will_paginate @logs %>
+
+  <table class="table table-borded tabl">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Summary</th>
+        <th class="date"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @logs.each do |log| %>
+        <tr>
+          <td><%= log.id %></td>
+          <td><%= link_to log.title, log %></td>
+          <td class="date"><%= log.created_at.to_s %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @logs %>
+<% end %>

@@ -3,12 +3,21 @@
 <head>
   <title>Exception track</title>
   <%= stylesheet_link_tag    "exception-track/application", media: "all" %>
-  <%= javascript_include_tag "exception-track/application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+  <% if notice %>
+  <div id="notice"><%= notice %></div>
+  <% end %>
+
+  <%= yield %>
+</div>
+
+<div class="footer">
+  <a href="https://github.com/rails-engine/exception-track">ExceptionTrack</a> powered.
+</div>
 
 </body>
 </html>
