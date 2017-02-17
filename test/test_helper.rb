@@ -6,6 +6,16 @@ ActiveRecord::Migrator.migrations_paths = [File.expand_path("../../test/dummy/db
 ActiveRecord::Migrator.migrations_paths << File.expand_path('../../db/migrate', __FILE__)
 require "rails/test_help"
 
+require 'simplecov'
+if ENV['CI']=='true'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+SimpleCov.start 'rails' do
+  add_filter 'lib/action_store/version'
+  add_filter 'lib/generators'
+end
+
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
