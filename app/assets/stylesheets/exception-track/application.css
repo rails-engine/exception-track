@@ -158,6 +158,9 @@ h1 { font-size: 16px; }
   padding-bottom: 15px;
   font-size: 14px;
 }
+
+.pagination li { display: inline; }
+
 .pagination a {
   padding: 5px 10px;
   border: 1px solid #eee;
