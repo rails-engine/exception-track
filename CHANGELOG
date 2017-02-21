@@ -1,3 +1,8 @@
+0.1.5
+-----
+
+- Silence Rails log on Exception Log creating.
+
 0.1.4
 -----
 
