@@ -6,8 +6,7 @@ require 'exception_notification'
 require 'exception_notification/rails'
 require 'exception_notifier/exception_track_notifier'
 
-require 'will_paginate'
-require 'will_paginate/active_record'
+require 'kaminari'
 
 module ExceptionTrack
   class << self

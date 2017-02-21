@@ -162,10 +162,13 @@ h1 { font-size: 16px; }
 .pagination li { display: inline; }
 
 .pagination a {
+  display: inline-block;
   padding: 5px 10px;
   border: 1px solid #eee;
 }
-.pagination em {
+.pagination em,
+.pagination .current {
+  display: inline-block;
   padding: 5px 10px;
   border: 1px solid #f0f0f0;
   background: #f0f0f0;

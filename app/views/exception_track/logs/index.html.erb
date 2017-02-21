@@ -6,7 +6,7 @@
   }
 </script>
 <div class="toolbar">
-  <%= @logs.total_entries %> exceptions
+  <%= @logs.total_count %> exceptions
 
   <div class="pull-right">
     <%= form_tag(all_logs_path, method: 'delete') do %>
@@ -18,7 +18,7 @@
 <% if @logs.blank? %>
   <div class="no-record">No exceptions.</div>
 <% else %>
-  <%= will_paginate @logs %>
+  <%= paginate @logs %>
 
   <table class="table table-borded tabl">
     <thead>
@@ -40,5 +40,5 @@
     </tbody>
   </table>
 
-  <%= will_paginate @logs %>
+  <%= paginate @logs %>
 <% end %>
