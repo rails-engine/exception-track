@@ -19,7 +19,9 @@ module ExceptionNotifier
       end
 
       if ExceptionTrack.config.enabled_env?(Rails.env)
-        ExceptionTrack::Log.create(title: @title, body: messages.join("\n"))
+        Rails.logger.silence do
+          ExceptionTrack::Log.create(title: @title, body: messages.join("\n"))
+        end
       end
     end
 
