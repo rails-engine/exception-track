@@ -1,3 +1,9 @@
+0.2.0
+-----
+
+- Use Kaminari instead or will_paginate.
+- Change per_page to 15 items.
+
 0.1.5
 -----
 
