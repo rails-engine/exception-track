@@ -18,7 +18,7 @@ module ExceptionTrack
     end
 
     def configure(&block)
-      config.instance_exec(&block)
+      config.instance_eval(&block)
     end
   end
 end
