@@ -1,3 +1,9 @@
+0.3.0
+-----
+
+- Add `request-id`, `controller#action`, `remote-ip` to exception headers.
+- Support Rails 5.2.
+
 0.2.0
 -----
 
