@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # require 'exception_notification/sidekiq'
 
 ExceptionTrack.configure do

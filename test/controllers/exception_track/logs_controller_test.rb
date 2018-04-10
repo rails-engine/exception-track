@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 module ExceptionTrack
   class LogsControllerTest < ActionDispatch::IntegrationTest
@@ -14,7 +16,7 @@ module ExceptionTrack
     end
 
     test "should get /exception-track" do
-      get '/exception-track'
+      get "/exception-track"
       assert_response :success
     end
 
@@ -30,7 +32,7 @@ module ExceptionTrack
       exception_track_logs(:one)
       exception_track_logs(:one)
       assert_equal(2, Log.count)
-      delete '/exception-track/all'
+      delete "/exception-track/all"
       assert_equal(0, Log.count)
 
       assert_redirected_to logs_url
