@@ -1,19 +1,21 @@
-require 'exception-track/version'
-require 'exception-track/configuration'
-require 'exception-track/engine'
+# frozen_string_literal: true
 
-require 'exception_notification'
-require 'exception_notification/rails'
-require 'exception_notifier/exception_track_notifier'
+require "exception-track/version"
+require "exception-track/configuration"
+require "exception-track/engine"
 
-require 'kaminari'
+require "exception_notification"
+require "exception_notification/rails"
+require "exception_notifier/exception_track_notifier"
+
+require "kaminari"
 
 module ExceptionTrack
   class << self
     def config
       return @config if defined?(@config)
       @config = Configuration.new
-      @config.environments = %i(development production)
+      @config.environments = %i[development production]
       @config
     end
 

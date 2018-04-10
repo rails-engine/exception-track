@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ExceptionTrack
   class Configuration
     # environments for store Exception log in to database.
