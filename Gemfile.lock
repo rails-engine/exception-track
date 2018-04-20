@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    exception-track (0.3.0)
+    exception-track (0.3.1)
       exception_notification (~> 4)
       kaminari (>= 0.15)
       rails (>= 4.0, < 6)
@@ -65,7 +65,7 @@ GEM
       activesupport (>= 4.0, < 6)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.0.0)
+    i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     json (2.1.0)
     kaminari (1.1.1)

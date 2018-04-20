@@ -1,3 +1,8 @@
+0.3.1
+-----
+
+- Remove `Rails.logger.silence` is not exist and error, when application use `Logger` not `ActiveSupport::Logger`.
+
 0.3.0
 -----
 

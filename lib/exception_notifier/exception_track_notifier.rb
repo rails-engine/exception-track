@@ -2,7 +2,7 @@
 
 # 异常通知
 module ExceptionNotifier
-  class ExceptionTrackNotifier
+  class ExceptionTrackNotifier < ExceptionNotifier::BaseNotifier
     def initialize(_options); end
 
     def call(exception, _options = {})
@@ -21,9 +21,7 @@ module ExceptionNotifier
         messages << exception.backtrace
       end
 
-      Rails.logger.silence do
-        ExceptionTrack::Log.create(title: @title, body: messages.join("\n"))
-      end
+      ExceptionTrack::Log.create(title: @title, body: messages.join("\n"))
     end
 
     # Log Request headers from Rack env
