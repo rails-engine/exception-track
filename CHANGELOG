@@ -1,3 +1,9 @@
+0.4.0
+-----
+
+- Limit title max 200 chars to fix long title error.
+- Change database `exception_tracks.body` field from `text` to `longtext`.
+
 0.3.1
 -----
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    exception-track (0.3.1)
+    exception-track (0.4.0)
       exception_notification (~> 4)
       kaminari (>= 0.15)
       rails (>= 4.0, < 6)
@@ -96,7 +96,7 @@ GEM
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.2.0)

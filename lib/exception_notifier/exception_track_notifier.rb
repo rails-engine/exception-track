@@ -9,7 +9,8 @@ module ExceptionNotifier
       return unless ExceptionTrack.config.enabled_env?(Rails.env)
 
       # send the notification
-      @title = exception.message
+      title = exception.message || "None"
+
       messages = []
       messages << headers_for_env(_options[:env])
       messages << ""
@@ -21,7 +22,7 @@ module ExceptionNotifier
         messages << exception.backtrace
       end
 
-      ExceptionTrack::Log.create(title: @title, body: messages.join("\n"))
+      ExceptionTrack::Log.create(title: title[0, 200], body: messages.join("\n"))
     end
 
     # Log Request headers from Rack env
