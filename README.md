@@ -81,7 +81,7 @@ mount ExceptionTrack::Engine => "/exception-track", constraints: AdminConstraint
 **With Devise**
 
 ```rb
-# config/router.rb
+# config/routes.rb
 authenticate :user, ->(u) { u.admin? } do
   mount ExceptionTrack::Engine => "/exception-track"
 end
