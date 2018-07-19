@@ -41,6 +41,12 @@ Rails.application.routes.draw do
 end
 ```
 
+Migrate database:
+
+```shell
+bundle exec rails db:migrate
+```
+
 Now you can open: http://localhost:3000/exception-track
 
 ## Configuration
