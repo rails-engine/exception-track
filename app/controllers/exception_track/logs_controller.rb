@@ -3,7 +3,7 @@
 module ExceptionTrack
   class LogsController < ActionController::Base
     layout "exception-track/application"
-    before_action :set_log, only: %i[show destroy]
+    before_action :set_log, only: :show
 
     # GET /exception_logs
     def index
