@@ -52,6 +52,13 @@ ExceptionTrack.configure do
   # environments for store Exception log in to database.
   # default: [:development, :production]
   # self.environments = %i(production)
+  #
+  # Basic authentication (used in none session application).
+  # While basic auth enabled and both name & password exist, basic authentication will used.
+  # Default all are nil.
+  # self.basic_auth_enable = Rails.env.production?
+  # self.basic_auth_name = "admin"
+  # self.basic_auth_password = ENV['BASIC_AUTH_PASSWORD']
 end
 ```
 
