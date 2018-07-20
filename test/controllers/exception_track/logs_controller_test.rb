@@ -8,23 +8,26 @@ module ExceptionTrack
 
     setup do
       @log = exception_track_logs(:one)
+      @base_headers = {
+        'HTTP_AUTHORIZATION': ActionController::HttpAuthentication::Basic.encode_credentials("admin", "password")
+      }
     end
 
     test "should get index" do
-      get logs_url
+      get logs_url, headers: @base_headers
       assert_response :success
     end
 
     test "should get /exception-track" do
-      get "/exception-track"
+      get "/exception-track", headers: @base_headers
       assert_response :success
     end
 
     test "should show exception_log" do
-      get log_url(@log)
+      get log_url(@log), headers: @base_headers
       assert_response :success
 
-      get "/exception-track/#{@log.id}"
+      get "/exception-track/#{@log.id}", headers: @base_headers
       assert_response :success
     end
 
@@ -32,10 +35,15 @@ module ExceptionTrack
       exception_track_logs(:one)
       exception_track_logs(:one)
       assert_equal(2, Log.count)
-      delete "/exception-track/all"
+      delete "/exception-track/all", headers: @base_headers
       assert_equal(0, Log.count)
 
       assert_redirected_to logs_url
+    end
+
+    test "shouldn't get /exception-track without basic auth" do
+      get logs_url
+      assert_response :unauthorized
     end
   end
 end

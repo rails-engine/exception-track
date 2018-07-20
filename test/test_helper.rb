@@ -25,6 +25,10 @@ Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
 ExceptionTrack.configure do
   self.environments = %i[test production]
+
+  self.basic_auth_enable = true
+  self.basic_auth_name = "admin"
+  self.basic_auth_password = "password"
 end
 
 # Load fixtures from the engine
