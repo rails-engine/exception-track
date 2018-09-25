@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# 异常通知
 module ExceptionNotifier
   class ExceptionTrackNotifier < ExceptionNotifier::BaseNotifier
     def initialize(_options); end
@@ -23,6 +22,16 @@ module ExceptionNotifier
       end
 
       ExceptionTrack::Log.create(title: title[0, 200], body: messages.join("\n"))
+    rescue => e
+      errs = []
+      errs << "-- [ExceptionTrack] create error ---------------------------"
+      errs << e.message.indent(2)
+      errs << ""
+      errs << "-- Exception detail ----------------------------------------"
+      errs << title.indent(2)
+      errs << ""
+      errs << messages.join("\n").indent(2)
+      Rails.logger.error errs.join("\n")
     end
 
     # Log Request headers from Rack env
