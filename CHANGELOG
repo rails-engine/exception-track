@@ -1,3 +1,8 @@
+0.5.1
+-----
+
+- Fix migration `longtext` not exist bug.
+
 0.5.0
 -----
 
