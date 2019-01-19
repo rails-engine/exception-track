@@ -1,3 +1,8 @@
+0.5.2
+-----
+
+- Fix gemspec for dependency with Rails 6;
+
 0.5.1
 -----
 
