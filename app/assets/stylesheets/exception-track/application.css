@@ -6,7 +6,7 @@ body {
 }
 
 body, textarea {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.4;
   color: #333;
@@ -38,7 +38,7 @@ table {
 
 th {
   text-align: left;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px #e0e0e0;
 }
 
 td.date { width: 150px; font-size: 12px; }
@@ -66,9 +66,9 @@ ul {
 table td, table th {
   padding: 10px 15px;
 }
-th { background: #f5f5f5; border-bottom: 1px solid #eee; }
+th { background: #f5f5f5; border-bottom: 1px solid #e0e0e0; }
 td {
-  border-top: solid 1px #ddd;
+  border-top: solid 1px #e0e0e0;
 }
 
 pre {
@@ -108,12 +108,16 @@ hr {
   user-select: none;
   border-radius: 3px;
   border: 1px solid #ccc;
-  padding: 8px 18px;
+  padding: 6px 16px;
+  color: #555 !important;
   outline: 0 !important;
   background: #FFF;
 }
-.btn:hover { text-decoration: none; }
-.btn-danger { background: #E25517; color: #fff; border: #D44323;}
+.btn:hover { text-decoration: none !important; background: #f7f7f7; }
+.btn-danger { background: #fff; color: #E33F00 !important; border-color: #E33F00;}
+.btn-danger:hover {
+  background: #FCEDEC;
+}
 
 .container {
   max-width: 1000px;
@@ -121,6 +125,8 @@ hr {
   margin-right: auto;
   padding: 20px;
   background-color: #fff;
+  box-shadow: 0 1px 8px rgba(200, 200, 200, 0.26);
+  border-radius: 3px;
 }
 
 .no-record {
@@ -145,9 +151,9 @@ hr {
 }
 
 pre {
-  background: #f9f9f9;
-  padding: 10px;
-  border: 1px solid #eee;
+  background: #f7f7f7;
+  padding: 25px;
+  border-radius: 3px;
   font-size: 12px;
   font-family: Menlo, Monaco, Consolas, monospace;
 }
@@ -165,6 +171,11 @@ h1 { font-size: 16px; }
   display: inline-block;
   padding: 5px 10px;
   border: 1px solid #eee;
+  color: #555;
+  text-decoration: none;
+}
+.pagination a:hover {
+  background: #f7f7f7;
 }
 .pagination em,
 .pagination .current {
