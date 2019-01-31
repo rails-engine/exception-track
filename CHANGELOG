@@ -1,3 +1,10 @@
+0.6.0
+-----
+
+- Add filtered_parameters into exception info.
+- Import UI Style.
+- Add export button for export exceptions as a JSON file.
+
 0.5.2
 -----
 

@@ -10,6 +10,11 @@ module ExceptionTrack
       @logs = Log.order("id desc").page(params[:page]).per(15)
     end
 
+    def export
+      @logs = Log.order("id desc").where("created_at >= ?", 3.months.ago)
+      send_data JSON.pretty_generate(@logs.as_json(only: [:title, :body, :created_at, :updated_at])), filename: "#{Date.current}.json", disposition: "attachment"
+    end
+
     # GET /exception_logs/1
     def show; end
 

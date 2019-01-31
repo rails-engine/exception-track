@@ -9,6 +9,9 @@
   <%= @logs.total_count %> exceptions
 
   <div class="pull-right">
+    <%= form_tag(export_logs_path, method: 'post') do %>
+      <button type="submit" class="btn">Export last 3 months</button>
+    <% end %>
     <%= form_tag(all_logs_path, method: 'delete') do %>
       <button type="submit" class="btn btn-danger" onclick="return confirmDestroyAll()">Delete All</button>
     <% end %>

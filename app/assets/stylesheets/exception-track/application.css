@@ -140,6 +140,7 @@ hr {
   height: 34px;
   line-height: 34px;
 }
+.toolbar form { display: inline; }
 .toolbar .pull-right { float: right; }
 
 #notice {
