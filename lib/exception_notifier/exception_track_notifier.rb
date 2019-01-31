@@ -38,11 +38,14 @@ module ExceptionNotifier
     def headers_for_env(env)
       return "" if env.blank?
 
-      parameters = env["action_dispatch.request.parameters"] || {}
+      parameters = filter_parameters(env)
 
       headers = []
       headers << "Method:      #{env['REQUEST_METHOD']}"
       headers << "URL:         #{env['REQUEST_URI']}"
+      if env['REQUEST_METHOD'].downcase != "get"
+        headers << "Parameters:\n#{pretty_hash(parameters.except(:controller, :action), 13)}"
+      end
       headers << "Controller:  #{parameters['controller']}##{parameters['action']}"
       headers << "RequestId:   #{env['action_dispatch.request_id']}"
       headers << "User-Agent:  #{env['HTTP_USER_AGENT']}"
@@ -52,6 +55,20 @@ module ExceptionNotifier
       headers << "Process:     #{$PROCESS_ID}"
 
       headers.join("\n")
+    end
+
+    def filter_parameters(env)
+      parameters = env["action_dispatch.request.parameters"] || {}
+      parameter_filter = ActionDispatch::Http::ParameterFilter.new(env["action_dispatch.parameter_filter"] || [])
+      return parameter_filter.filter(parameters)
+    rescue => e
+      Rails.logger.error "filter_parameters error: #{e.inspect}"
+      return parameters
+    end
+
+    def pretty_hash(params, indent = 0)
+      json = JSON.pretty_generate(params)
+      json.indent(indent)
     end
   end
 end
