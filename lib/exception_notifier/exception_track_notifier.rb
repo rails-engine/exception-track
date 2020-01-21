@@ -59,7 +59,7 @@ module ExceptionNotifier
 
     def filter_parameters(env)
       parameters = env["action_dispatch.request.parameters"] || {}
-      parameter_filter = ActionDispatch::Http::ParameterFilter.new(env["action_dispatch.parameter_filter"] || [])
+      parameter_filter = ActiveSupport::ParameterFilter.new(env["action_dispatch.parameter_filter"] || [])
       return parameter_filter.filter(parameters)
     rescue => e
       Rails.logger.error "filter_parameters error: #{e.inspect}"
