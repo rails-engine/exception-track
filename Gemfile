@@ -3,8 +3,5 @@
 source "https://rubygems.org"
 
 gemspec
-
-group :test do
-  gem "codecov"
-  gem "simplecov"
-end
+gem "codecov"
+gem "simplecov"
