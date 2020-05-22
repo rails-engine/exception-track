@@ -2,6 +2,7 @@
 
 require "exception-track/version"
 require "exception-track/configuration"
+require "exception-track/log_subscriber"
 require "exception-track/engine"
 
 require "exception_notification"

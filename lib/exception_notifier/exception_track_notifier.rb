@@ -9,19 +9,23 @@ module ExceptionNotifier
 
       # send the notification
       title = exception.message || "None"
-
       messages = []
-      messages << headers_for_env(opts[:env])
-      messages << ""
-      messages << "--------------------------------------------------"
-      messages << ""
-      messages << exception.inspect
-      unless exception.backtrace.blank?
-        messages << "\n"
-        messages << exception.backtrace
-      end
 
-      ExceptionTrack::Log.create(title: title[0, 200], body: messages.join("\n"))
+      ActiveSupport::Notifications.instrument("track.exception_track", title: title) do
+        messages << headers_for_env(opts[:env])
+        messages << ""
+        messages << "--------------------------------------------------"
+        messages << ""
+        messages << exception.inspect
+        unless exception.backtrace.blank?
+          messages << "\n"
+          messages << exception.backtrace
+        end
+
+        Rails.logger.silence do
+          ExceptionTrack::Log.create(title: title[0, 200], body: messages.join("\n"))
+        end
+      end
     rescue StandardError => e
       errs = []
       errs << "-- [ExceptionTrack] create error ---------------------------"

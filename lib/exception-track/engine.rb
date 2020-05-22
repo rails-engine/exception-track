@@ -7,5 +7,7 @@ module ExceptionTrack
     initializer "exception-track.assets.precompile", group: :all do |app|
       app.config.assets.precompile += %w[exception-track/application.css]
     end
+
+    ExceptionTrack::LogSubscriber.attach_to :exception_track
   end
 end
