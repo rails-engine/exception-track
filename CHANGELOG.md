@@ -1,3 +1,9 @@
+1.0.0
+-----
+
+- Fix assets mainfest.js missing error.
+- Use custom debug log for instead of the SQL log, for avoid output too much line of logs.
+
 0.6.2
 -----
 
