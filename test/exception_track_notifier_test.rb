@@ -23,8 +23,8 @@ module ExceptionNotifier
         password: "123456",
         "name" => "foo",
         user: {
-          token: "aaabbbccc"
-        }
+          token: "aaabbbccc",
+        },
       }
       env = {
         "action_dispatch.parameter_filter" => filters,
@@ -48,8 +48,8 @@ module ExceptionNotifier
         password: "123456",
         "name" => "foo",
         user: {
-          token: "aaabbbccc"
-        }
+          token: "aaabbbccc",
+        },
       }
 
       expected = <<-HASH

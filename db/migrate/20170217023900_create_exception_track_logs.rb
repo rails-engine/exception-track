@@ -4,7 +4,7 @@ class CreateExceptionTrackLogs < ActiveRecord::Migration[5.0]
   def change
     create_table :exception_tracks do |t|
       t.string :title
-      t.text :body, limit: 16777215
+      t.text :body, limit: 16_777_215
 
       t.timestamps
     end

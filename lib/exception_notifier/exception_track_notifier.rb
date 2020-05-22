@@ -2,16 +2,16 @@
 
 module ExceptionNotifier
   class ExceptionTrackNotifier < ExceptionNotifier::BaseNotifier
-    def initialize(_options); end
+    def initialize(_opts); end
 
-    def call(exception, _options = {})
+    def call(exception, opts = {})
       return unless ExceptionTrack.config.enabled_env?(Rails.env)
 
       # send the notification
       title = exception.message || "None"
 
       messages = []
-      messages << headers_for_env(_options[:env])
+      messages << headers_for_env(opts[:env])
       messages << ""
       messages << "--------------------------------------------------"
       messages << ""
@@ -22,7 +22,7 @@ module ExceptionNotifier
       end
 
       ExceptionTrack::Log.create(title: title[0, 200], body: messages.join("\n"))
-    rescue => e
+    rescue StandardError => e
       errs = []
       errs << "-- [ExceptionTrack] create error ---------------------------"
       errs << e.message.indent(2)
@@ -43,9 +43,7 @@ module ExceptionNotifier
       headers = []
       headers << "Method:      #{env['REQUEST_METHOD']}"
       headers << "URL:         #{env['REQUEST_URI']}"
-      if env['REQUEST_METHOD'].downcase != "get"
-        headers << "Parameters:\n#{pretty_hash(parameters.except(:controller, :action), 13)}"
-      end
+      headers << "Parameters:\n#{pretty_hash(parameters.except(:controller, :action), 13)}" if env["REQUEST_METHOD"].downcase != "get"
       headers << "Controller:  #{parameters['controller']}##{parameters['action']}"
       headers << "RequestId:   #{env['action_dispatch.request_id']}"
       headers << "User-Agent:  #{env['HTTP_USER_AGENT']}"
@@ -60,10 +58,10 @@ module ExceptionNotifier
     def filter_parameters(env)
       parameters = env["action_dispatch.request.parameters"] || {}
       parameter_filter = ActiveSupport::ParameterFilter.new(env["action_dispatch.parameter_filter"] || [])
-      return parameter_filter.filter(parameters)
-    rescue => e
+      parameter_filter.filter(parameters)
+    rescue StandardError => e
       Rails.logger.error "filter_parameters error: #{e.inspect}"
-      return parameters
+      parameters
     end
 
     def pretty_hash(params, indent = 0)

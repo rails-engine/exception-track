@@ -8,6 +8,7 @@ module ExceptionTrack
 
     def enabled_env?(env)
       return false if env.blank?
+
       environments.include?(env.to_sym)
     end
   end
