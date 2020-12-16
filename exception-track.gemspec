@@ -21,6 +21,4 @@ Gem::Specification.new do |s|
   s.add_dependency "exception_notification", "~> 4"
   s.add_dependency "kaminari", ">= 0.15"
   s.add_dependency "rails", ">= 5.2"
-
-  s.add_development_dependency "mysql2"
 end
