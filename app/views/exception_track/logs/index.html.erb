@@ -6,7 +6,7 @@
   }
 </script>
 <div class="toolbar">
-  <a class="btn" href="/">Back to app </a>
+  <a class="btn" href="/">Back to App</a>
 
   <div class="pull-right">
     <%= form_tag(export_logs_path, method: 'post') do %>
@@ -21,7 +21,7 @@
 <% if @logs.blank? %>
   <div class="no-record">No exceptions.</div>
 <% else %>
-  <h1> <%= pluralize(@logs.total_count, 'exception') %></h1>
+  <h1><%= pluralize(@logs.total_count, 'exception') %></h1>
   <%= paginate @logs %>
 
   <table class="table table-borded tabl">
