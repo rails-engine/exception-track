@@ -1,3 +1,10 @@
+1.2.0
+-----
+
+- Add Dark mode.
+- Improve: since no instance variable will be used in block. (#1)
+- Added "Back to App" button. (#20)
+
 1.1.0
 -----
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    exception-track (1.1.0)
+    exception-track (1.2.0)
       exception_notification (~> 4)
       kaminari (>= 0.15)
       rails (>= 5.2)
