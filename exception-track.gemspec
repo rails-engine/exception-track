@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "README.md"]
 
-  s.add_dependency "exception_notification", "~> 4"
+  s.add_dependency "exception_notification", ">= 4.1.3"
   s.add_dependency "kaminari", ">= 0.15"
   s.add_dependency "rails", ">= 5.2"
 end
