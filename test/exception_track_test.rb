@@ -20,7 +20,7 @@ class ExceptionTrack::Test < ActiveSupport::TestCase
     assert_equal true, config.enabled_env?(:production)
   end
 
-  test "ExceptionNotification config" do
-    assert_equal true, ExceptionNotifier.notifiers.include?(:exception_track)
+  test "ExceptionNotification config db notifier" do
+    assert_equal %i[db], ExceptionNotifier.notifiers
   end
 end

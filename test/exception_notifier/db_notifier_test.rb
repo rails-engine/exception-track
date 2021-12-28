@@ -3,9 +3,9 @@
 require "test_helper"
 
 module ExceptionNotifier
-  class ExceptionTrackNotifier::Test < ActiveSupport::TestCase
+  class DbNotifier::Test < ActiveSupport::TestCase
     setup do
-      @notifier = ExceptionTrackNotifier.new({})
+      @notifier = ExceptionNotifier::DbNotifier.new
     end
 
     test ".call" do
@@ -20,21 +20,21 @@ module ExceptionNotifier
     test "filter_parameters" do
       filters = [:password, "token"]
       raw_parameters = {
-        password: "123456",
+        :password => "123456",
         "name" => "foo",
-        user: {
-          token: "aaabbbccc",
-        },
+        :user => {
+          token: "aaabbbccc"
+        }
       }
       env = {
         "action_dispatch.parameter_filter" => filters,
-        "action_dispatch.request.parameters" => raw_parameters,
+        "action_dispatch.request.parameters" => raw_parameters
       }
       params = @notifier.filter_parameters(env)
-      assert_equal({ password: "[FILTERED]", "name" => "foo", user: { token: "[FILTERED]" } }, params)
+      assert_equal({:password => "[FILTERED]", "name" => "foo", :user => {token: "[FILTERED]"}}, params)
 
       # when filter is nil
-      env = { "action_dispatch.request.parameters" => raw_parameters }
+      env = {"action_dispatch.request.parameters" => raw_parameters}
       params = @notifier.filter_parameters(env)
       assert_equal(raw_parameters, params)
 
@@ -45,11 +45,11 @@ module ExceptionNotifier
 
     test "pretty_hash" do
       params = {
-        password: "123456",
+        :password => "123456",
         "name" => "foo",
-        user: {
-          token: "aaabbbccc",
-        },
+        :user => {
+          token: "aaabbbccc"
+        }
       }
 
       expected = <<-HASH

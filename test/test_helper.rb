@@ -6,17 +6,13 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../test/dummy/config/environment.rb", __dir__)
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
 ActiveRecord::Migrator.migrations_paths << File.expand_path("../db/migrate", __dir__)
+
+require "minitest/autorun"
+require "mocha/minitest"
 require "rails/test_help"
 
-
-require "simplecov"
-require "codecov"
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
-
-SimpleCov.start "rails" do
-  add_filter "lib/action_store/version"
-  add_filter "lib/generators"
-end
+ExceptionNotifier.testing_mode!
+require "support/exception_notifier_helper"
 
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.

@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module ExceptionNotifier
-  class ExceptionTrackNotifier < ExceptionNotifier::BaseNotifier
-    def initialize(_opts); end
+  class DbNotifier < ExceptionNotifier::BaseNotifier
+    def initialize(opts = {})
+      super(opts)
+    end
 
     def call(exception, opts = {})
       return unless ExceptionTrack.config.enabled_env?(Rails.env)
@@ -26,7 +28,7 @@ module ExceptionNotifier
           ExceptionTrack::Log.create(title: title[0, 200], body: messages.join("\n"))
         end
       end
-    rescue StandardError => e
+    rescue => e
       errs = []
       errs << "-- [ExceptionTrack] create error ---------------------------"
       errs << e.message.indent(2)
@@ -45,14 +47,14 @@ module ExceptionNotifier
       parameters = filter_parameters(env)
 
       headers = []
-      headers << "Method:      #{env['REQUEST_METHOD']}"
-      headers << "URL:         #{env['REQUEST_URI']}"
+      headers << "Method:      #{env["REQUEST_METHOD"]}"
+      headers << "URL:         #{env["REQUEST_URI"]}"
       headers << "Parameters:\n#{pretty_hash(parameters.except(:controller, :action), 13)}" if env["REQUEST_METHOD"].downcase != "get"
-      headers << "Controller:  #{parameters['controller']}##{parameters['action']}"
-      headers << "RequestId:   #{env['action_dispatch.request_id']}"
-      headers << "User-Agent:  #{env['HTTP_USER_AGENT']}"
-      headers << "Remote IP:   #{env['REMOTE_ADDR']}"
-      headers << "Language:    #{env['HTTP_ACCEPT_LANGUAGE']}"
+      headers << "Controller:  #{parameters["controller"]}##{parameters["action"]}"
+      headers << "RequestId:   #{env["action_dispatch.request_id"]}"
+      headers << "User-Agent:  #{env["HTTP_USER_AGENT"]}"
+      headers << "Remote IP:   #{env["REMOTE_ADDR"]}"
+      headers << "Language:    #{env["HTTP_ACCEPT_LANGUAGE"]}"
       headers << "Server:      #{Socket.gethostname}"
       headers << "Process:     #{$PROCESS_ID}"
 
@@ -63,7 +65,7 @@ module ExceptionNotifier
       parameters = env["action_dispatch.request.parameters"] || {}
       parameter_filter = ActiveSupport::ParameterFilter.new(env["action_dispatch.parameter_filter"] || [])
       parameter_filter.filter(parameters)
-    rescue StandardError => e
+    rescue => e
       Rails.logger.error "filter_parameters error: #{e.inspect}"
       parameters
     end

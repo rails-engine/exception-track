@@ -7,7 +7,6 @@ require "exception-track/engine"
 
 require "exception_notification"
 require "exception_notification/rails"
-require "exception_notifier/exception_track_notifier"
 
 require "kaminari"
 
@@ -28,5 +27,5 @@ module ExceptionTrack
 end
 
 ExceptionNotification.configure do |config|
-  config.add_notifier :exception_track, {}
+  config.add_notifier :db, {}
 end
