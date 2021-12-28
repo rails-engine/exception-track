@@ -3,16 +3,16 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
-require File.expand_path("../test/dummy/config/environment.rb", __dir__)
+require_relative "../test/dummy/config/environment"
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
 ActiveRecord::Migrator.migrations_paths << File.expand_path("../db/migrate", __dir__)
+
+ExceptionNotifier.testing_mode!
+require "support/exception_notifier_helper"
 
 require "minitest/autorun"
 require "mocha/minitest"
 require "rails/test_help"
-
-ExceptionNotifier.testing_mode!
-require "support/exception_notifier_helper"
 
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.
